@@ -77,7 +77,7 @@ function DiscountCarousel(props: {
                 cover={
                   <Link to={`/product/${gameTitle}`} key={gameTitle}>
                     <Image
-                      width='100%'
+                      width="100%"
                       preview={false}
                       src={header}
                       alt=""

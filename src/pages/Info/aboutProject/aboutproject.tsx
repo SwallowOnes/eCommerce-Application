@@ -309,11 +309,7 @@ function AboutProject() {
       <section className={styles.logoBlock}>
         <div className={styles.sectionContaier}>
           <div className={styles.containerBlock}>
-            <Card
-              className={styles.contCardClientServ}
-              title="CLIENT"
-              bordered
-            >
+            <Card className={styles.contCardClientServ} title="CLIENT" bordered>
               <List
                 itemLayout="horizontal"
                 dataSource={dataClient}
@@ -333,11 +329,7 @@ function AboutProject() {
                 )}
               />
             </Card>
-            <Card
-              title="SERVER"
-              bordered
-              className={styles.contCardClientServ}
-            >
+            <Card title="SERVER" bordered className={styles.contCardClientServ}>
               <List
                 itemLayout="horizontal"
                 dataSource={dataServer}
