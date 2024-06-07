@@ -1,7 +1,12 @@
 .categoryCard {
   height: 183px;
-  margin: 0 5px -10px 5px;
-  border-radius: 0;
+  margin: 10px 5px -10px 5px;
+  border-radius: 16px;
+}
+
+.categoryCard:hover {
+  transform: scale(1.05);
+  transition: all .2s;
 }
 
 .categoryTitle {
@@ -21,8 +26,20 @@
 .gradient {
   position: absolute;
   top: 0;
-  height: 102%;
-  width: 102%;
+  height: 100%;
+  width: 101%;
   background: linear-gradient(rgba(0, 0, 0, 0), var(--bg-color-main));
-  margin: -1px -13px 11px -25px;
+  margin-left: -25px;
+  transition: all 2s ease;
+}
+
+.gradient:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), var(--color-accent));
+}
+
+@media (max-width: 472px) {
+  .categoryCard:hover {
+    transform: none;
+    transition: none;
+  }
 }
