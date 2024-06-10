@@ -1,29 +1,23 @@
 .headerMenu {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.logotip {
-  display: flex;
-  width: auto;
-  min-width: 64px;
-  min-height: 64px;
-  font-size: 36px;
-  color: var(--color-text);
-  justify-content: center;
-}
-
-.menuMain {
-  display: flex;
-  align-items: center;
-  width: auto;
-  min-width: 170px;
+  flex-grow: 1;
+  /* align-items: stretch; */
+  /* margin: 0 auto; */
   justify-content: space-around;
 }
 
-.menuReg {
+.logotip {
+  flex-grow: 1;
+  flex-basis: 33.33%;
   display: flex;
+  width: auto;
+  font-size: 36px;
+  color: var(--color-text);
+  justify-content: flex-start;
+}
+
+.menuReg {
+  flex-basis: 30%;
   align-items: center;
   width: auto;
   min-width: 170px;
@@ -33,7 +27,6 @@
 .menuItems {
   display: flex;
   background-color: var(--bg-color-menu);
-  width: 100%;
   border-bottom: none;
   justify-content: center;
 }
@@ -76,7 +69,7 @@
   cursor: pointer;
   width: 50px;
   height: 32px;
-  font-size: 30px;
+  font-size: 20px;
   z-index: 20;
 }
 
@@ -87,6 +80,11 @@
   justify-content: flex-end;
 }
 
+.themeHolder {
+  display: flex;
+  gap: 10px;
+}
+
 .avatarPointer {
   cursor: pointer;
 }
@@ -95,6 +93,9 @@
   display: flex;
   flex-direction: row;
   column-gap: 10px;
+  flex-grow: 1;
+  flex-basis: 33.33%;
+  justify-content: flex-end;
 }
 
 .cartLink {
@@ -132,6 +133,7 @@
 
   .logotip {
     margin: auto;
+    justify-content: center;
   }
 
   .burgerMenu {
@@ -154,7 +156,7 @@
     cursor: pointer;
     width: 50px;
     height: 32px;
-    font-size: 30px;
+    font-size: 20px;
     z-index: 20;
   }
 }

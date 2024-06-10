@@ -1,3 +1,12 @@
+.menuMain {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  flex-grow: 1;
+  flex-basis: 33.33%;
+  justify-content: center;
+}
+
 .menuItems {
   display: flex;
   background-color: var(--bg-color-menu);
@@ -11,6 +20,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  background-color: transparent;
 }
 
 .avatarPointer {
@@ -21,17 +31,25 @@
   display: flex;
   flex-direction: row;
   column-gap: 10px;
+  flex-grow: 1;
+  flex-basis: 33.33%;
+  justify-content: flex-end;
 }
 
 .cartLink {
-  margin-top: 5px;
+  display: flex !important;
+  align-items: center;
+}
+
+.userMenuItem {
+  display: flex;
 }
 
 .menuReg {
   display: flex;
   align-items: center;
   width: auto;
-  min-width: 170px;
+  min-width: 270px;
   justify-content: space-around;
 }
 
@@ -41,6 +59,37 @@
   width: 100%;
   justify-content: flex-end;
   border-bottom: none;
+}
+
+.menuBadge {
+  display: flex !important;
+  gap: 10px;
+  align-items: center;
+}
+
+.loginName {
+  display: none;
+  gap: 10px;
+  align-items: center;
+}
+
+.cartBadge {
+  display: none;
+}
+
+.cartMenuItem {
+  display: flex;
+}
+
+.menuIcon {
+  display: none;
+  font-size: 32px !important;
+}
+
+.userMenuBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 
@@ -55,13 +104,31 @@
   }
 
   .leftMenuCont {
-    padding-top: 30px;
     flex-direction: column-reverse;
-    row-gap: 20px;
   }
 
   .cartLink {
     margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .cartBadge {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .menuBadge {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    align-items: center;
+  }
+
+  .userMenuBadge{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
 }

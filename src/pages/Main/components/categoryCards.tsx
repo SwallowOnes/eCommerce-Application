@@ -46,9 +46,7 @@ function CategoryCards(genres: string[]) {
             />
           }
         >
-          <div className={styles.gradient} >
-            {genre}
-          </div>
+          <div className={styles.gradient}>{genre}</div>
         </Card>
       </div>
     </Link>
