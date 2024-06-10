@@ -4,6 +4,7 @@ import { ConfigProvider } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import store, { RootState } from './redux/store';
 import antPattern, { getThemeAlgorithm } from './theme/antPattern';
+import { setTheme } from './redux/slice/themeSlice';
 
 import LayoutPage from './pages/Layout/layout';
 import MainPage from './pages/Main/main';
@@ -31,6 +32,7 @@ function App() {
   const basketIdState = useSelector(
     (state: RootState) => state.basket.basketId,
   );
+  const localStoreTheme = window.localStorage.getItem('theme');
 
   const refreshToken = async () => {
     await store.dispatch(checkAuth());
@@ -52,6 +54,12 @@ function App() {
       dispatch(setBasketId(anonBasket));
     }
   };
+
+  const updateTheme = async () => {
+    if (themeState !== undefined && localStoreTheme !== null) {
+      dispatch(setTheme(localStoreTheme));
+    }
+  }
 
   const updateUserBasketId = async () => {
     const basketUserId = await BasketService.getBasketIdFromUser();
@@ -109,6 +117,10 @@ function App() {
     if (isAuthLoading) {
       return;
     }
+    if(localStoreTheme) {
+      updateTheme();
+      return;
+    }
 
     if (isAuthState) {
       updateUserBasketId();
@@ -118,7 +130,7 @@ function App() {
       updateAnonBasketId();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [basketIdState, isAuthState]);
+  }, [basketIdState, isAuthState, localStoreTheme]);
 
   return (
     <ConfigProvider
