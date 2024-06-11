@@ -19,8 +19,8 @@ const antPattern = {
     },
     components: {
       Layout: {
-        colorBgHeader: '#eae7ea',
-        colorBgBody: '#fff',
+        headerBg: '#eae7ea',
+        bodyBg: '#fff',
       },
       Timeline: {
         tailColor: 'black',
@@ -41,8 +41,8 @@ const antPattern = {
     },
     components: {
       Layout: {
-        colorBgHeader: '#171a21',
-        colorBgBody: '#417a9b',
+        headerBg: '#171a21',
+        bodyBg: '#417a9b',
       },
       Timeline: {
         tailColor: 'black',
@@ -58,8 +58,8 @@ const antPattern = {
     },
     components: {
       Layout: {
-        colorBgHeader: '#ffe6f9',
-        colorBgBody: '#417a9b',
+        headerBg: '#ffe6f9',
+        bodyBg: '#417a9b',
       },
       Timeline: {
         tailColor: 'black',

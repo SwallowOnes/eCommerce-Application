@@ -24,7 +24,6 @@ function CategoryCards(genres: string[]) {
     <Link to="/catalog" key={genre}>
       <div className={styles.categoryCardContainer}>
         <Card
-          hoverable
           key={genre}
           className={styles.categoryCard}
           onClick={() => {
@@ -47,8 +46,7 @@ function CategoryCards(genres: string[]) {
             />
           }
         >
-          <span className={styles.categoryTitle}>{genre}</span>
-          <div className={styles.gradient} />
+          <div className={styles.gradient}>{genre}</div>
         </Card>
       </div>
     </Link>

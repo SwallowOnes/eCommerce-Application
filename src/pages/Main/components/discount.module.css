@@ -5,6 +5,11 @@
   width: 100%;
 }
 
+.discountCardContainer {
+  width: 100%;
+  height: auto;
+}
+
 .categoryCard {
   height: 183px;
   margin: 0 5px -10px 5px;
@@ -29,6 +34,10 @@
 .discountCard:hover {
   background-color: var(--bg-color-main);
   transition: 0.5s;
+}
+
+.cardImg {
+  width: 100%;
 }
 
 .discountPrice {

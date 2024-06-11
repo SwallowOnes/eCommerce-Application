@@ -54,7 +54,6 @@ function DiscountCards(products: IProduct[]) {
       <div className={styles.discountCardContainer} key={gameTitle}>
         <Card
           hoverable
-          bodyStyle={{ background: 'transperant' }}
           style={{ background: 'transperant', boxShadow: 'none' }}
           bordered={false}
           key={gameTitle}

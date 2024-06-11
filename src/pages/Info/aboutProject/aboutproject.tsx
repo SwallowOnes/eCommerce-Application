@@ -309,12 +309,7 @@ function AboutProject() {
       <section className={styles.logoBlock}>
         <div className={styles.sectionContaier}>
           <div className={styles.containerBlock}>
-            <Card
-              className={styles.contCardClientServ}
-              title="CLIENT"
-              bordered
-              bodyStyle={{ padding: '0px 20px' }}
-            >
+            <Card className={styles.contCardClientServ} title="CLIENT" bordered>
               <List
                 itemLayout="horizontal"
                 dataSource={dataClient}
@@ -334,12 +329,7 @@ function AboutProject() {
                 )}
               />
             </Card>
-            <Card
-              title="SERVER"
-              bordered
-              className={styles.contCardClientServ}
-              bodyStyle={{ padding: '0px 20px' }}
-            >
+            <Card title="SERVER" bordered className={styles.contCardClientServ}>
               <List
                 itemLayout="horizontal"
                 dataSource={dataServer}

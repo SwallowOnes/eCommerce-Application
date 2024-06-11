@@ -79,7 +79,7 @@ function CatalogCards(props: { products: IProduct[] }) {
               <div className={styles.catalogCardContainer}>
                 <Card
                   hoverable
-                  bodyStyle={{ padding: '5px' }}
+                  styles={{ body: { padding: '5px' } }}
                   className={styles.catalogCard}
                   cover={
                     <Image
