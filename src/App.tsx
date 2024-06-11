@@ -59,7 +59,7 @@ function App() {
     if (themeState !== undefined && localStoreTheme !== null) {
       dispatch(setTheme(localStoreTheme));
     }
-  }
+  };
 
   const updateUserBasketId = async () => {
     const basketUserId = await BasketService.getBasketIdFromUser();
@@ -117,7 +117,7 @@ function App() {
     if (isAuthLoading) {
       return;
     }
-    if(localStoreTheme) {
+    if (localStoreTheme) {
       updateTheme();
       return;
     }

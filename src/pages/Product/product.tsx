@@ -176,51 +176,70 @@ function Product() {
     return <SkeletonLoading />;
   }
 
+  const url = `${productDataState.headerImg}`.split('/');
+  const suffix = url.pop();
+  const gameId = url.pop();
+  const baseURL = url.join('/');
+  const bgSuffix = `page_bg_generated_v6b.jpg?=${suffix}`;
+  const bgImage = `${baseURL}/${gameId}/${bgSuffix}`;
+
   return (
-    <div className={styles.productCont}>
-      <div className={styles.productTitleCont}>
-        <div className={styles.productPath}>
-          {productDataState.gameTitle &&
+    <div
+      className={styles.productBackground}
+      style={{
+        backgroundImage: `
+        linear-gradient(90deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 10%,
+        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
+        linear-gradient(180deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 20%,
+        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
+         url(${bgImage})`,
+      }}
+    >
+      <div className={styles.productCont}>
+        <div className={styles.productTitleCont}>
+          <div className={styles.productPath}>
+            {productDataState.gameTitle &&
+              productDataState.gameGenre &&
+              productDataState.gameTheme &&
+              createPath(productDataState)}
+          </div>
+          <h1 className={styles.productTitle}>{productDataState.gameTitle}</h1>
+        </div>
+        <div className={styles.headerBlockCont}>
+          {productDataState.screenshotList && (
+            <ImgCarousel productData={productDataState} />
+          )}
+          {productDataState.headerImg &&
+            productDataState.descriptionShort &&
+            productDataState.userReviewRows &&
+            productDataState.releaseDate &&
+            productDataState.devCompany && (
+              <HeaderRight productData={productDataState} />
+            )}
+        </div>
+        <div className={styles.mainCont}>
+          {productDataState.price &&
+            productDataState.descriptionLong &&
+            (productDataState.sysRequirementsMinimum ||
+              productDataState.sysRequirementsMinimumFill) && (
+              <MainLeft productData={productDataState} />
+            )}
+          {productDataState.category &&
+            productDataState.gameTitle &&
             productDataState.gameGenre &&
             productDataState.gameTheme &&
-            createPath(productDataState)}
+            productDataState.devCompany && (
+              <MainRight productData={productDataState} />
+            )}
         </div>
-        <h1 className={styles.productTitle}>{productDataState.gameTitle}</h1>
-      </div>
-      <div className={styles.headerBlockCont}>
-        {productDataState.screenshotList && (
-          <ImgCarousel productData={productDataState} />
-        )}
-        {productDataState.headerImg &&
-          productDataState.descriptionShort &&
-          productDataState.userReviewRows &&
-          productDataState.releaseDate &&
-          productDataState.devCompany && (
-            <HeaderRight productData={productDataState} />
-          )}
-      </div>
-      <div className={styles.mainCont}>
-        {productDataState.price &&
-          productDataState.descriptionLong &&
-          (productDataState.sysRequirementsMinimum ||
-            productDataState.sysRequirementsMinimumFill) && (
-            <MainLeft productData={productDataState} />
-          )}
-        {productDataState.category &&
-          productDataState.gameTitle &&
-          productDataState.gameGenre &&
-          productDataState.gameTheme &&
-          productDataState.devCompany && (
-            <MainRight productData={productDataState} />
-          )}
-      </div>
-      <div className={styles.randProductsCont}>
-        {productsRandomState?.length ? (
-          <RandomCards
-            products={productsRandomState}
-            randomCards={randomProductsNum}
-          />
-        ) : null}
+        <div className={styles.randProductsCont}>
+          {productsRandomState?.length ? (
+            <RandomCards
+              products={productsRandomState}
+              randomCards={randomProductsNum}
+            />
+          ) : null}
+        </div>
       </div>
     </div>
   );
