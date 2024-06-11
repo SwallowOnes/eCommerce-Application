@@ -1,9 +1,12 @@
 .catalogCardTwoPrice {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   column-gap: 10px;
   flex-wrap: nowrap;
+  line-height: 1;
+  color: var(--text-color-price);
+  padding: 0px 5px;
 }
 
 .catalogCardRegPrice {
@@ -12,8 +15,14 @@
   text-decoration: line-through;
   font-size: 0.7rem;
   align-items: center;
-
+  justify-content: flex-end;
+  color: #738895;
 }
+
+.catalogCardDiscPrice {
+  color: var(--text-price-discount);
+}
+
 
 .catalogCardDiscPrice,
 .catalogCardNormalPrice {
@@ -21,4 +30,8 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.catalogCardNormalPrice {
+  line-height: 2;
 }

@@ -28,6 +28,7 @@ const antPattern = {
       },
       Button: {
         borderColorDisabled: '#52c41a',
+        borderRadius: '3px'
       },
     },
   },
@@ -47,6 +48,9 @@ const antPattern = {
       Timeline: {
         tailColor: 'black',
         dotBg: 'transparent',
+      },
+      Button: {
+        borderRadius: '3px'
       },
     },
   },

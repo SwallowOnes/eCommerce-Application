@@ -11,6 +11,7 @@ import {
 import IProduct from '../../../types/IProduct';
 
 import styles from '../product.module.css';
+import GetDiscount from '../../../components/shared/getDiscount';
 
 interface SystemRequirements {
   [key: string]: string;
@@ -81,52 +82,36 @@ function MainLeft({ productData }: MainLeftProps) {
   const priceButton = (
     priceForBlock: number,
     discountPriceForBlock: number | null,
-  ) => {
-    if (discountPriceForBlock) {
-      return (
-        <div className={styles.discountCont}>
+  ) => (
+    <div className={styles.priceSection}>
+      {discountPriceForBlock ? (
+        <div className={styles.dicountPriceCont}>
           <div className={styles.discountSize}>
-            {`-${((1 - discountPriceForBlock / priceForBlock) * 100).toFixed(
-              0,
-            )}%`}
+            {`-${((1 - discountPriceForBlock / priceForBlock) * 100)
+            .toFixed(0,)}%`
+            }
           </div>
-          <div className={styles.doublePriceCont}>
-            <div className={styles.regularPriceCont}>
-              {`${Number(priceForBlock).toFixed(2)} €`}
-            </div>
-            <div className={styles.discountPriceCont}>
-              {`${Number(discountPriceForBlock).toFixed(2)} €`}
-            </div>
-          </div>
-          <Button
-            className={styles.priceButton}
-            disabled={isAuthLoadingState || isLoadingBasketState}
-            onClick={() => cartButton()}
-          >
-            {(itemsGameNameState || []).includes(gameTitle)
-              ? 'Remove from Cart'
-              : 'Add to Cart'}
-          </Button>
+          <GetDiscount
+            priceDesc={price}
+            discountPriceDesc={discountPrice}
+          />
         </div>
-      );
-    }
-    return (
-      <div className={styles.regPriceCont}>
+      ) : (
         <div className={styles.regPriceText}>
           {`${Number(priceForBlock).toFixed(2)} €`}
         </div>
-        <Button
-          className={styles.addToCartText}
-          disabled={isAuthLoadingState || isLoadingBasketState}
-          onClick={() => cartButton()}
-        >
-          {(itemsGameNameState || []).includes(gameTitle)
-            ? 'Remove from Cart'
-            : 'Add to Cart'}
-        </Button>
-      </div>
-    );
-  };
+      )}
+      <Button
+        type="primary"
+        disabled={isAuthLoadingState || isLoadingBasketState}
+        onClick={() => cartButton()}
+      >
+        {(itemsGameNameState || []).includes(gameTitle)
+          ? 'Remove from Cart'
+          : 'Add to Cart'}
+      </Button>
+    </div>
+  );
 
   const paragraphs = descriptionLong.map((paragraph, index) => {
     const paragraphKey = `paragraph_${index}`;

@@ -108,6 +108,51 @@
   flex-direction: column;
 }
 
+.tagProdPrice {
+  display: flex;
+}
+
+/* Discount cont */
+.dicountPriceCont {
+  display: flex;
+  background-color: var(--bg-price);
+  color: var(--text-color-price);
+  border-radius: 2px;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  background-color: var(--bg-price);
+  color: var(--text-color-price);
+  padding: 5px 5px;
+  border-radius: 2px;
+}
+
+.discountSize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--text-price-discount);
+  padding: 0px 5px;
+  font-size: 17px;
+  font-weight: 600;
+  background-color: var(--bg-price-discount);
+}
+
+.doublePriceCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.catalogCardTwoPrice {
+  color: var(--text-color-price);
+}
+
+
 .recentReview {
   display: flex;
   flex-direction: row;
@@ -175,7 +220,7 @@
   position: relative;
   min-height: 72px;
   background: linear-gradient(-60deg, rgba(226, 244, 255, 0.3) 5%, rgba(84, 107, 115, 0.3) 95%);
-
+  border-radius: 4px;
   font-size: 21px;
 }
 
@@ -201,31 +246,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.discountCont {
   display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-  background-color: var(--bg-color-accent);
-  color: var(--color-text-accent);
-  padding: 4px 8px;
-}
-
-.discountSize {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0px 5px;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.doublePriceCont {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  color: var(--color-text);
 }
 
 .regularPriceCont {
