@@ -35,16 +35,18 @@ function RandomCards(props: { products: IProduct[]; randomCards: number }) {
     const { gameTitle, screenshotList, price, discountPrice } = product;
     const randomIndex = Math.floor(Math.random() * screenshotList.length);
     return (
-      <Link to={`/product/${gameTitle}`} key={gameTitle}>
+      <Link to={`/product/${gameTitle}`}
+            key={gameTitle}
+            className={styles.flexGrow1}
+            style={{minWidth: `calc(100%/ ${randomCards}`}}>
         <Card
           hoverable
-          style={{ width: 200 }}
           cover={
             <Image
               alt="example"
+              height={90}
               src={screenshotList[randomIndex]}
-              height={200}
-              style={{ objectFit: 'cover' }}
+              // style={{ objectFit: 'cover'}}
               preview={false}
             />
           }

@@ -12,6 +12,7 @@ import IProduct from '../../../types/IProduct';
 
 import styles from '../product.module.css';
 import GetDiscount from '../../../components/shared/getDiscount';
+import RandomCards from './randomCarts';
 
 interface SystemRequirements {
   [key: string]: string;
@@ -23,11 +24,12 @@ interface ReqTableProps {
   sysRequirementsRecommended?: SystemRequirements;
 }
 
-interface MainLeftProps {
-  productData: IProduct;
-}
-
-function MainLeft({ productData }: MainLeftProps) {
+// interface MainLeftProps {
+//   productData: IProduct;
+// }
+// props: { products: IProduct[]; randomCards: number })
+function MainLeft(props: { productData: IProduct; productRandom: IProduct[], randPordNum: number}) {
+  const { productData, productRandom, randPordNum } = props;
   const { gameTitle, price, discountPrice, descriptionLong } = productData;
   const [needToAdd, setNeedToAdd] = useState(false);
   const [needToDelete, setNeedToDelete] = useState(false);
@@ -193,6 +195,20 @@ function MainLeft({ productData }: MainLeftProps) {
         <p className={styles.sysReqTitle}>SYSTEM REQUIREMENTS</p>
         {reqTable(productData)}
       </div>
+      <div className={styles.aboutGame}>
+        <p className={styles.aboutGameTitle}>YOU MAY ALSO LIKE:</p>
+      </div>
+      <div 
+        className={styles.randProductsCont}
+        //  style={{gridTemplateColumns: `repeat(${randomProductsNum}, 1fr)`}}
+         >
+          {productRandom?.length ? (
+            <RandomCards
+              products={productRandom}
+              randomCards={randPordNum}
+            />
+          ) : null}
+        </div>
     </div>
   );
 }

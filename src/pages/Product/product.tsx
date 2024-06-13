@@ -15,7 +15,7 @@ import ImgCarousel from './components/imgCarousel';
 import HeaderRight from './components/headerRight';
 import MainLeft from './components/mainLeft';
 import MainRight from './components/mainRight';
-import RandomCards from './components/randomCarts';
+// import RandomCards from './components/randomCarts';
 
 import IProduct from '../../types/IProduct';
 
@@ -222,7 +222,7 @@ function Product() {
             productDataState.descriptionLong &&
             (productDataState.sysRequirementsMinimum ||
               productDataState.sysRequirementsMinimumFill) && (
-              <MainLeft productData={productDataState} />
+              <MainLeft productData={productDataState} productRandom={productsRandomState} randPordNum={randomProductsNum}/>
             )}
           {productDataState.category &&
             productDataState.gameTitle &&
@@ -231,14 +231,6 @@ function Product() {
             productDataState.devCompany && (
               <MainRight productData={productDataState} />
             )}
-        </div>
-        <div className={styles.randProductsCont}>
-          {productsRandomState?.length ? (
-            <RandomCards
-              products={productsRandomState}
-              randomCards={randomProductsNum}
-            />
-          ) : null}
         </div>
       </div>
     </div>

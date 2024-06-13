@@ -95,7 +95,12 @@ function CatalogCards(props: { products: IProduct[] }) {
                   </Tooltip>
                   <p className={styles.descCard}>{descriptionShort}</p>
                   <div className={styles.catalogCardDesc}>
-                    <Tag style={{ padding: '5px 15px', backgroundColor: 'var(--bg-price)' }}>
+                    <Tag
+                      style={{
+                        padding: '5px 15px',
+                        backgroundColor: 'var(--bg-price)',
+                      }}
+                    >
                       <GetDiscount
                         priceDesc={price}
                         discountPriceDesc={discountPrice}

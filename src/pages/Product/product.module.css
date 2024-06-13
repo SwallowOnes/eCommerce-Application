@@ -365,11 +365,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 16px;
+  /* padding: 16px; */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
   margin: 0 auto;
-  width: 892px;
-  margin-bottom: 20px;
+  /* width: 892px; */
+  margin: 20px auto;
+}
+
+.randomCard {
+  margin: 0px 5px -10px 0px;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  transition: 0.5s;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .discCardTwoPrice {
@@ -457,7 +467,6 @@
   background-color: var(--color-accent);
   display: flex;
   min-width: 150px;
-  min-height: 50px;
   max-width: 10%;
   justify-content: space-evenly;
   border-radius: 6px;
@@ -466,6 +475,7 @@
 .zoomOut,
 .zoomIn {
   display: flex;
+  min-height: 50px;
   flex-grow: 1
 }
 
@@ -550,7 +560,7 @@
 
   .mainCont {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     row-gap: 16px;
     padding: 0 10px;
   }
@@ -560,23 +570,50 @@
   }
 
   .mainRight {
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-around;
   }
 }
 
 @media (max-width: 756px) {
+  .tagsCont,
+  .additInfoMainCont {
+    height: 100%;
+  }
   .headerBlockContRight {
-    flex-direction: column;
+    flex-direction: row;
+  }
+
+  .mainRight {
+    margin: 0 auto;
+    align-items: center;
+    width: 100%;
   }
 
   .headerImgAdapt,
   .headerTextdapt {
     width: 100%;
     margin: 0 auto;
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 550px) {
+  .mainRight {
+    flex-direction: column;
+    width: 100%;
+  }
+  .tagsCont,
+  .additInfoMainCont {
+    height: 100%;
+    width: 100%;
+  }
+  .headerBlockContRight {
+    flex-direction: column;
+  }
+
   .reqMinAndRec {
     flex-direction: column;
     row-gap: 15px;

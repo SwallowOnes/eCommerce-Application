@@ -1,8 +1,5 @@
 import { Carousel, Image } from 'antd';
-import {
-  ZoomInOutlined,
-  ZoomOutOutlined,
-} from '@ant-design/icons';
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 
 import IProduct from '../../../types/IProduct';
 import styles from '../product.module.css';
@@ -33,13 +30,24 @@ function ImgCarousel({ productData }: ImgCarouselProps) {
           //     </div>
           // ),
           // eslint-disable-next-line react/no-unstable-nested-components
-          toolbarRender: (_, { transform: { scale }, actions: { onZoomOut, onZoomIn } }) => (
+          toolbarRender: (
+            _,
+            { transform: { scale }, actions: { onZoomOut, onZoomIn } },
+          ) => (
             <div className={styles.tolbarCustom}>
               <div className={styles.zoomOut}>
-                <ZoomOutOutlined disabled={scale === 1} className={styles.iconsCont} onClick={onZoomOut} />
+                <ZoomOutOutlined
+                  disabled={scale === 1}
+                  className={styles.iconsCont}
+                  onClick={onZoomOut}
+                />
               </div>
               <div className={styles.zoomIn}>
-                <ZoomInOutlined disabled={scale > 5} className={styles.iconsCont} onClick={onZoomIn} />
+                <ZoomInOutlined
+                  disabled={scale > 5}
+                  className={styles.iconsCont}
+                  onClick={onZoomIn}
+                />
               </div>
             </div>
           ),
