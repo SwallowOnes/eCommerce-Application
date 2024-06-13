@@ -87,14 +87,11 @@ function MainLeft({ productData }: MainLeftProps) {
       {discountPriceForBlock ? (
         <div className={styles.dicountPriceCont}>
           <div className={styles.discountSize}>
-            {`-${((1 - discountPriceForBlock / priceForBlock) * 100)
-            .toFixed(0,)}%`
-            }
+            {`-${((1 - discountPriceForBlock / priceForBlock) * 100).toFixed(
+              0,
+            )}%`}
           </div>
-          <GetDiscount
-            priceDesc={price}
-            discountPriceDesc={discountPrice}
-          />
+          <GetDiscount priceDesc={price} discountPriceDesc={discountPrice} />
         </div>
       ) : (
         <div className={styles.regPriceText}>

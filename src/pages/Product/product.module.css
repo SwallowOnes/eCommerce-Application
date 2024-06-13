@@ -50,8 +50,7 @@
   flex-direction: row;
   column-gap: 16px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
-  padding: 10px;
-  margin-right: 10px;
+  padding: 0 0 10px;
 }
 
 .imgCarousel {
@@ -60,8 +59,9 @@
 }
 
 .carouselDots button {
-  height: 6px !important;
+  height: 12px !important;
   background-color: var(--color-main) !important;
+  border: 1px solid;
 }
 
 .imgCarouselCont {
@@ -206,7 +206,6 @@
   display: flex;
   flex-direction: row;
   column-gap: 16px;
-  padding: 0 10px;
 }
 
 .mainLeft {
@@ -247,7 +246,7 @@
   align-items: center;
   text-align: center;
   display: flex;
-  color: var(--color-text);
+  color: var(--text-price-normal);
 }
 
 .regularPriceCont {
@@ -453,6 +452,55 @@
   color: var(--color-text);
   opacity: 0.9;
 }
+/* Ant-tollbar */
+.tolbarCustom {
+  background-color: var(--color-accent);
+  display: flex;
+  min-width: 150px;
+  min-height: 50px;
+  max-width: 10%;
+  justify-content: space-evenly;
+  border-radius: 6px;
+}
+
+.zoomOut,
+.zoomIn {
+  display: flex;
+  flex-grow: 1
+}
+
+.zoomOut {
+  border-right: 1px solid;
+}
+
+.zoomIn {
+  border-left: 1px solid;
+}
+
+
+.iconsCont {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.imgCarouselCounter {
+  display: flex;
+  background-color: var(--bg-color-accent);
+}
+
+.maskAnt {
+  background-color: aqua;
+}
+
+.imgPlaceHolder {
+  position: relative;
+  padding: 10px;
+  border-radius: 3px;
+  background: -webkit-linear-gradient(315deg, #356480 5%, #1a303d 95%);
+  background: linear-gradient(135deg, #356480 5%, #1a303d 95%);
+}
+/* end toolbar */
 
 @media (max-width: 945px) {
   .productCont {
@@ -488,6 +536,11 @@
   .headerBlockContLeft {
     width: 100%;
     height: auto;
+  }
+
+  .imgCarouselCounter {
+    display: flex;
+    background-color: var(--bg-color-accent);
   }
 
   .imgCarousel {
