@@ -200,7 +200,11 @@ function MainLeft(props: {
       </div>
       <div className={styles.randProductsCont}>
         {productRandom?.length ? (
-          <RandomCards products={productRandom} randomCards={randPordNum} currentProd={currentProdTitle} />
+          <RandomCards
+            products={productRandom}
+            randomCards={randPordNum}
+            currentProd={currentProdTitle}
+          />
         ) : null}
       </div>
     </div>

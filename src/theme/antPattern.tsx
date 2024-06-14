@@ -30,7 +30,7 @@ const antPattern = {
       Button: {
         borderColorDisabled: '#52c41a',
         borderRadius: '3px',
-        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)'
+        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)',
       },
     },
   },
@@ -54,7 +54,7 @@ const antPattern = {
       },
       Button: {
         borderRadius: '3px',
-        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)'
+        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)',
       },
     },
   },

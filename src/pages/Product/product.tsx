@@ -1,26 +1,24 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { message } from 'antd';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchProductData,
   fetchRandProducts,
-  setSelectedFilters,
 } from '../../redux/slice/productSlice';
 import store, { RootState } from '../../redux/store';
+
 
 import SkeletonLoading from './components/skeletonLoading';
 import ImgCarousel from './components/imgCarousel';
 import HeaderRight from './components/headerRight';
 import MainLeft from './components/mainLeft';
 import MainRight from './components/mainRight';
-// import RandomCards from './components/randomCarts';
 
-import IProduct from '../../types/IProduct';
 
 import styles from './product.module.css';
-import { IFilters } from '../../types/storeType';
+import BreadCrumbs from './components/breadCrumbs';
 
 const RANDOM_PRODUCT_REQUEST = 5;
 
@@ -79,72 +77,6 @@ function Product() {
     (state: RootState) => state.product.errorProduct,
   );
 
-  const createPath = (productDataStatePath: IProduct) => {
-    const { gameTheme, gameGenre, gameTitle } = productDataStatePath;
-    return (
-      <div className={styles.pathCont}>
-        <p className={styles.pathAllGames}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [],
-                  themes: [],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            All Games &gt;
-          </Link>
-        </p>
-        <p className={styles.pathGenre}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [gameGenre[0]],
-                  themes: [],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            {`${gameGenre[0]} >`}
-          </Link>
-        </p>
-        <p className={styles.pathTheme}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [gameGenre[0]],
-                  themes: [gameTheme[0]],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            {`${gameTheme[0]} >`}
-          </Link>
-        </p>
-        <p className={styles.pathGameTitle}>{gameTitle}</p>
-      </div>
-    );
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -199,9 +131,10 @@ function Product() {
         <div className={styles.productTitleCont}>
           <div className={styles.productPath}>
             {productDataState.gameTitle &&
-              productDataState.gameGenre &&
               productDataState.gameTheme &&
-              createPath(productDataState)}
+              productDataState.gameGenre && (
+              <BreadCrumbs productDataStatePath={productDataState} />
+            )}
           </div>
           <h1 className={styles.productTitle}>{productDataState.gameTitle}</h1>
         </div>

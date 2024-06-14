@@ -45,6 +45,10 @@
   opacity: 0.9;
 }
 
+.pathGameTitle {
+  text-transform: uppercase;
+}
+
 .headerBlockCont {
   display: flex;
   flex-direction: row;

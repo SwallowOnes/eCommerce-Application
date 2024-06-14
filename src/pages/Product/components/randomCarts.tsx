@@ -4,7 +4,11 @@ import IProduct from '../../../types/IProduct';
 
 import styles from '../product.module.css';
 
-function RandomCards(props: { products: IProduct[]; randomCards: number; currentProd: string }) {
+function RandomCards(props: {
+  products: IProduct[];
+  randomCards: number;
+  currentProd: string;
+}) {
   const { products, randomCards, currentProd } = props;
   const getDescription = (
     priceDesc: number,
@@ -31,7 +35,9 @@ function RandomCards(props: { products: IProduct[]; randomCards: number; current
     );
   };
 
-  const filtredProducts = products.filter((item) => item.gameTitle !== currentProd ).slice(0, randomCards);
+  const filtredProducts = products
+    .filter((item) => item.gameTitle !== currentProd)
+    .slice(0, randomCards);
 
   return filtredProducts.map((product: IProduct) => {
     const { gameTitle, price, discountPrice, headerImg } = product;
@@ -50,7 +56,7 @@ function RandomCards(props: { products: IProduct[]; randomCards: number; current
               alt="example"
               height={90}
               src={headerImg}
-              style={{ objectFit: 'cover'}}
+              style={{ objectFit: 'cover' }}
               preview={false}
             />
           }
