@@ -50,7 +50,7 @@
   flex-direction: row;
   column-gap: 16px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
-  padding: 0 0 10px;
+  padding: 0 0 25px;
 }
 
 .imgCarousel {
@@ -58,10 +58,14 @@
   height: 338px;
 }
 
+.carouselDots {
+  bottom: -5px !important;
+}
+
 .carouselDots button {
-  height: 12px !important;
-  background-color: var(--color-main) !important;
-  border: 1px solid;
+  height: 6px !important;
+  background-color: var(--bg-color-main-invert) !important;
+  bottom: -16px !important;
 }
 
 .imgCarouselCont {
@@ -231,14 +235,15 @@
   font-size: 13px;
 }
 
-.regPriceCont {
+/*dead */
+/* .regPriceCont {
   display: flex;
   flex-direction: row;
   column-gap: 15px;
   background-color: var(--bg-color-accent);
   color: var(--color-text-accent);
-  padding: 4px 8px;
-}
+  padding: 4px 4px;
+} */
 
 .regPriceText {
   display: flex;
@@ -247,6 +252,7 @@
   text-align: center;
   display: flex;
   color: var(--text-price-normal);
+  padding: 0 5px;
 }
 
 .regularPriceCont {

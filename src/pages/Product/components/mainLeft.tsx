@@ -24,12 +24,13 @@ interface ReqTableProps {
   sysRequirementsRecommended?: SystemRequirements;
 }
 
-// interface MainLeftProps {
-//   productData: IProduct;
-// }
-// props: { products: IProduct[]; randomCards: number })
-function MainLeft(props: { productData: IProduct; productRandom: IProduct[], randPordNum: number}) {
-  const { productData, productRandom, randPordNum } = props;
+function MainLeft(props: {
+  productData: IProduct;
+  productRandom: IProduct[];
+  randPordNum: number;
+  currentProdTitle: string;
+}) {
+  const { productData, productRandom, randPordNum, currentProdTitle } = props;
   const { gameTitle, price, discountPrice, descriptionLong } = productData;
   const [needToAdd, setNeedToAdd] = useState(false);
   const [needToDelete, setNeedToDelete] = useState(false);
@@ -182,7 +183,6 @@ function MainLeft(props: { productData: IProduct; productRandom: IProduct[], ran
     <div className={styles.mainLeft}>
       <div className={styles.priceCont}>
         {`Buy ${gameTitle}`}
-        {}
         <div className={styles.mainPriceCont}>
           {priceButton(price, discountPrice)}
         </div>
@@ -198,17 +198,11 @@ function MainLeft(props: { productData: IProduct; productRandom: IProduct[], ran
       <div className={styles.aboutGame}>
         <p className={styles.aboutGameTitle}>YOU MAY ALSO LIKE:</p>
       </div>
-      <div 
-        className={styles.randProductsCont}
-        //  style={{gridTemplateColumns: `repeat(${randomProductsNum}, 1fr)`}}
-         >
-          {productRandom?.length ? (
-            <RandomCards
-              products={productRandom}
-              randomCards={randPordNum}
-            />
-          ) : null}
-        </div>
+      <div className={styles.randProductsCont}>
+        {productRandom?.length ? (
+          <RandomCards products={productRandom} randomCards={randPordNum} currentProd={currentProdTitle} />
+        ) : null}
+      </div>
     </div>
   );
 }

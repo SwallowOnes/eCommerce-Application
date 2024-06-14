@@ -222,7 +222,12 @@ function Product() {
             productDataState.descriptionLong &&
             (productDataState.sysRequirementsMinimum ||
               productDataState.sysRequirementsMinimumFill) && (
-              <MainLeft productData={productDataState} productRandom={productsRandomState} randPordNum={randomProductsNum}/>
+              <MainLeft
+                productData={productDataState}
+                productRandom={productsRandomState}
+                randPordNum={randomProductsNum}
+                currentProdTitle={productDataState.gameTitle}
+              />
             )}
           {productDataState.category &&
             productDataState.gameTitle &&
