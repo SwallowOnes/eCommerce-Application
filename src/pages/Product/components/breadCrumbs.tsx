@@ -27,7 +27,6 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
       path: '/catalog',
       filters: {
         genresFilter: [`${gameGenre[0]}`],
-        themesFilter: [],
       },
     },
     {
@@ -52,18 +51,14 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
               to={path}
               className={styles.pathLink}
               onClick={() => {
-                if (filters) {
+                if (!filters) return;
                   const { genresFilter, themesFilter } = filters;
                   dispatch(
                     setSelectedFilters({
                       genres: genresFilter,
                       themes: themesFilter,
-                      tags: [],
-                      minPrice: 0,
-                      maxPrice: 60,
                     } as IFilters),
                   );
-                }
               }}
             >
               {name} &gt;

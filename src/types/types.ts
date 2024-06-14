@@ -33,5 +33,10 @@ interface ChangeQuantity {
   itemUpdates: ChangeQuantityItem;
 }
 
-export type { CatalogOptionsType, ChangeQuantity, ChangeQuantityItem, IBreadcrumb };
+export type {
+  CatalogOptionsType,
+  ChangeQuantity,
+  ChangeQuantityItem,
+  IBreadcrumb,
+};
 export default LoginFormValues;

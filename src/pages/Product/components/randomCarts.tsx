@@ -41,15 +41,16 @@ function RandomCards(props: {
 
   return filtredProducts.map((product: IProduct) => {
     const { gameTitle, price, discountPrice, headerImg } = product;
-    // const randomIndex = Math.floor(Math.random() * screenshotList.length);
     return (
       <Link
         to={`/product/${gameTitle}`}
         key={gameTitle}
         className={styles.flexGrow1}
-        style={{ minWidth: `calc(100%/ ${randomCards}` }}
+        style={{ minWidth: `calc(100%/ ${randomCards}`, height: '100%' }}
       >
         <Card
+          style={{height: '100%'}}
+          styles={{ body: { padding: '10px 5px' }, cover: {} }}
           hoverable
           cover={
             <Image

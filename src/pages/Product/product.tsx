@@ -9,13 +9,11 @@ import {
 } from '../../redux/slice/productSlice';
 import store, { RootState } from '../../redux/store';
 
-
 import SkeletonLoading from './components/skeletonLoading';
 import ImgCarousel from './components/imgCarousel';
 import HeaderRight from './components/headerRight';
 import MainLeft from './components/mainLeft';
 import MainRight from './components/mainRight';
-
 
 import styles from './product.module.css';
 import BreadCrumbs from './components/breadCrumbs';
@@ -133,8 +131,8 @@ function Product() {
             {productDataState.gameTitle &&
               productDataState.gameTheme &&
               productDataState.gameGenre && (
-              <BreadCrumbs productDataStatePath={productDataState} />
-            )}
+                <BreadCrumbs productDataStatePath={productDataState} />
+              )}
           </div>
           <h1 className={styles.productTitle}>{productDataState.gameTitle}</h1>
         </div>

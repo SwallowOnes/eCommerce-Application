@@ -376,7 +376,7 @@
   flex-direction: row;
   justify-content: space-between;
   /* padding: 16px; */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  /* background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%); */
   margin: 0 auto;
   /* width: 892px; */
   margin: 20px auto;
