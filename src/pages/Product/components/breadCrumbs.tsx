@@ -19,6 +19,7 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
 
   const breadCrumbs: IBreadcrumb[] = [
     {
+      key: 'all games',
       name: 'ALL GAMES',
       path: '/catalog',
       filters: {
@@ -27,6 +28,7 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
       }
     },
     {
+      key: 'genre',
       name: `${gameGenre[0]}`,
       path: '/catalog',
       filters: {
@@ -34,6 +36,7 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
       },
     },
     {
+      key: 'theme',
       name: `${gameTheme[0]}`,
       path: '/catalog',
       filters: {
@@ -42,14 +45,15 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
       },
     },
     {
+      key: 'title',
       name: `${gameTitle}`,
     },
   ];
 
   return (
     <div className={styles.pathCont}>
-      {breadCrumbs.map(({ name, path, filters }: IBreadcrumb) => (
-        <p className={styles.pathAllGames} key={name}>
+      {breadCrumbs.map(({ name, path, filters, key }: IBreadcrumb) => (
+        <span className={styles.pathAllGames} key={key}>
           {path ? (
             <Link
               to={path}
@@ -68,9 +72,9 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
               {name} &gt;
             </Link>
           ) : (
-            <p className={styles.pathGameTitle}>{name}</p>
+            <span className={styles.pathGameTitle}>{name}</span>
           )}
-        </p>
+        </span>
       ))}
     </div>
   );

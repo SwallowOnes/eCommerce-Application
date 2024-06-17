@@ -22,6 +22,7 @@ interface ChangeQuantityItem {
 }
 
 interface IBreadcrumb {
+  key: string;
   name: string;
   path?: string;
   filters?: {
