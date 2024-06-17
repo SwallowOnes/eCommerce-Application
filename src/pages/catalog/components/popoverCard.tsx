@@ -15,7 +15,6 @@ function PopoverCards(props: { products: IProduct[] }) {
     const headerSuffix = 'header.jpg';
     const header = `${baseURL}/${gameID}/${headerSuffix}`;
     return (
-      <div className={styles.popoverContainer}>
         <Link
           to={`/product/${gameTitle}`}
           key={gameTitle}
@@ -41,7 +40,6 @@ function PopoverCards(props: { products: IProduct[] }) {
             </div>
           </div>
         </Link>
-      </div>
     );
   });
 }
