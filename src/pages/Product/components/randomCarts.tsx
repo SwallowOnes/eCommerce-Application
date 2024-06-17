@@ -49,7 +49,7 @@ function RandomCards(props: {
         style={{ minWidth: `calc(100%/ ${randomCards}`, height: '100%' }}
       >
         <Card
-          style={{height: '100%'}}
+          style={{ height: '100%' }}
           styles={{ body: { padding: '10px 5px' }, cover: {} }}
           hoverable
           cover={

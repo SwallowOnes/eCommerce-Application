@@ -52,13 +52,13 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
               className={styles.pathLink}
               onClick={() => {
                 if (!filters) return;
-                  const { genresFilter, themesFilter } = filters;
-                  dispatch(
-                    setSelectedFilters({
-                      genres: genresFilter,
-                      themes: themesFilter,
-                    } as IFilters),
-                  );
+                const { genresFilter, themesFilter } = filters;
+                dispatch(
+                  setSelectedFilters({
+                    genres: genresFilter,
+                    themes: themesFilter,
+                  } as IFilters),
+                );
               }}
             >
               {name} &gt;

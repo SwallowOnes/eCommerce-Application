@@ -110,19 +110,27 @@ function Product() {
   const suffix = url.pop();
   const gameId = url.pop();
   const baseURL = url.join('/');
-  const bgSuffix = `page_bg_generated_v6b.jpg?=${suffix}`;
+  const bgSuffix = `library_hero.jpg?=${suffix}`;
   const bgImage = `${baseURL}/${gameId}/${bgSuffix}`;
+
+  /* This is for best tuning mask */
+  // linear-gradient(180deg, var(--color-gradient-second) 58%, var(--gpStoreDarkGrey) 95%),
+  // radial-gradient(15.77% 44.22% at 50% 104.95%, var(--color-gradient-second) 0%, var(--color-gradient-second) 100%),
+  // radial-gradient(30.95% 86.8% at 48.69% 13.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+  // radial-gradient(30.95% 86.8% at 48.69% 13.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+  // radial-gradient(51.31% 143.89% at 49.99% 24.75%, #00000000 0%, #00000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%),
+  // radial-gradient(51.31% 143.89% at 49.99% 24.75%, #00000000 0%, #00000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%),
+  // linear-gradient(180deg, #00000042 90%, rgb(219 26 26) 100%),
 
   return (
     <div
       className={styles.productBackground}
       style={{
         backgroundImage: `
-        linear-gradient(90deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 10%,
-        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
-        linear-gradient(180deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 20%,
-        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
-         url(${bgImage})`,
+          linear-gradient(180deg, var(--color-gradient-second) 58%, var(--gpStoreDarkGrey) 95%),
+          radial-gradient(15.77% 44.22% at 50% 104.95%, var(--color-gradient-second) 0%, var(--color-gradient-second) 100%),
+          radial-gradient(53.95% 91.8% at 49.69% 89.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+          url(${bgImage})`,
       }}
     >
       <div className={styles.productCont}>
