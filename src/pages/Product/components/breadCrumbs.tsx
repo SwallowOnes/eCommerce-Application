@@ -21,6 +21,10 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
     {
       name: 'ALL GAMES',
       path: '/catalog',
+      filters: {
+        genresFilter: [],
+        themesFilter: [],
+      }
     },
     {
       name: `${gameGenre[0]}`,
