@@ -523,6 +523,9 @@
 /* end toolbar */
 
 @media (max-width: 945px) {
+  .productBackground {
+    background-size: auto;
+  }
   .productCont {
     width: 100%;
     margin: 0px 10px;
