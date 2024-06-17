@@ -66,6 +66,7 @@ function HeaderRight({ productData }: HeaderRightProps) {
       <div className={styles.headerImgAdapt}>
         <div className={styles.headerBlockContRight_ImgCont}>
           <Image
+            preview={false}
             src={headerImg}
             style={{ objectFit: 'cover' }}
             className={styles.headerImg}

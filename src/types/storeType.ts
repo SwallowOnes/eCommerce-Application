@@ -60,11 +60,11 @@ interface ProductState {
 }
 
 interface IFilters {
-  themes: string[];
-  genres: string[];
-  tags: string[];
-  minPrice: number;
-  maxPrice: number;
+  themes?: string[];
+  genres?: string[];
+  tags?: string[];
+  minPrice?: number;
+  maxPrice?: number;
 }
 
 interface ICatalog {

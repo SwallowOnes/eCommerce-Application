@@ -21,9 +21,22 @@ interface ChangeQuantityItem {
   [key: string]: number;
 }
 
+interface IBreadcrumb {
+  name: string;
+  path?: string;
+  filters?: {
+    genresFilter?: string[];
+    themesFilter?: string[];
+  };
+}
 interface ChangeQuantity {
   itemUpdates: ChangeQuantityItem;
 }
 
-export type { CatalogOptionsType, ChangeQuantity, ChangeQuantityItem };
+export type {
+  CatalogOptionsType,
+  ChangeQuantity,
+  ChangeQuantityItem,
+  IBreadcrumb,
+};
 export default LoginFormValues;

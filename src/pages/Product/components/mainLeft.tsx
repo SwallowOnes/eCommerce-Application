@@ -11,6 +11,8 @@ import {
 import IProduct from '../../../types/IProduct';
 
 import styles from '../product.module.css';
+import GetDiscount from '../../../components/shared/getDiscount';
+import RandomCards from './randomCarts';
 
 interface SystemRequirements {
   [key: string]: string;
@@ -22,11 +24,13 @@ interface ReqTableProps {
   sysRequirementsRecommended?: SystemRequirements;
 }
 
-interface MainLeftProps {
+function MainLeft(props: {
   productData: IProduct;
-}
-
-function MainLeft({ productData }: MainLeftProps) {
+  productRandom: IProduct[];
+  randPordNum: number;
+  currentProdTitle: string;
+}) {
+  const { productData, productRandom, randPordNum, currentProdTitle } = props;
   const { gameTitle, price, discountPrice, descriptionLong } = productData;
   const [needToAdd, setNeedToAdd] = useState(false);
   const [needToDelete, setNeedToDelete] = useState(false);
@@ -81,52 +85,33 @@ function MainLeft({ productData }: MainLeftProps) {
   const priceButton = (
     priceForBlock: number,
     discountPriceForBlock: number | null,
-  ) => {
-    if (discountPriceForBlock) {
-      return (
-        <div className={styles.discountCont}>
+  ) => (
+    <div className={styles.priceSection}>
+      {discountPriceForBlock ? (
+        <div className={styles.dicountPriceCont}>
           <div className={styles.discountSize}>
             {`-${((1 - discountPriceForBlock / priceForBlock) * 100).toFixed(
               0,
             )}%`}
           </div>
-          <div className={styles.doublePriceCont}>
-            <div className={styles.regularPriceCont}>
-              {`${Number(priceForBlock).toFixed(2)} €`}
-            </div>
-            <div className={styles.discountPriceCont}>
-              {`${Number(discountPriceForBlock).toFixed(2)} €`}
-            </div>
-          </div>
-          <Button
-            className={styles.priceButton}
-            disabled={isAuthLoadingState || isLoadingBasketState}
-            onClick={() => cartButton()}
-          >
-            {(itemsGameNameState || []).includes(gameTitle)
-              ? 'Remove from Cart'
-              : 'Add to Cart'}
-          </Button>
+          <GetDiscount priceDesc={price} discountPriceDesc={discountPrice} />
         </div>
-      );
-    }
-    return (
-      <div className={styles.regPriceCont}>
+      ) : (
         <div className={styles.regPriceText}>
           {`${Number(priceForBlock).toFixed(2)} €`}
         </div>
-        <Button
-          className={styles.addToCartText}
-          disabled={isAuthLoadingState || isLoadingBasketState}
-          onClick={() => cartButton()}
-        >
-          {(itemsGameNameState || []).includes(gameTitle)
-            ? 'Remove from Cart'
-            : 'Add to Cart'}
-        </Button>
-      </div>
-    );
-  };
+      )}
+      <Button
+        type="primary"
+        disabled={isAuthLoadingState || isLoadingBasketState}
+        onClick={() => cartButton()}
+      >
+        {(itemsGameNameState || []).includes(gameTitle)
+          ? 'Remove from Cart'
+          : 'Add to Cart'}
+      </Button>
+    </div>
+  );
 
   const paragraphs = descriptionLong.map((paragraph, index) => {
     const paragraphKey = `paragraph_${index}`;
@@ -198,7 +183,6 @@ function MainLeft({ productData }: MainLeftProps) {
     <div className={styles.mainLeft}>
       <div className={styles.priceCont}>
         {`Buy ${gameTitle}`}
-        {}
         <div className={styles.mainPriceCont}>
           {priceButton(price, discountPrice)}
         </div>
@@ -210,6 +194,18 @@ function MainLeft({ productData }: MainLeftProps) {
       <div className={styles.sysReq}>
         <p className={styles.sysReqTitle}>SYSTEM REQUIREMENTS</p>
         {reqTable(productData)}
+      </div>
+      <div className={styles.aboutGame}>
+        <p className={styles.aboutGameTitle}>YOU MAY ALSO LIKE:</p>
+      </div>
+      <div className={styles.randProductsCont}>
+        {productRandom?.length ? (
+          <RandomCards
+            products={productRandom}
+            randomCards={randPordNum}
+            currentProd={currentProdTitle}
+          />
+        ) : null}
       </div>
     </div>
   );

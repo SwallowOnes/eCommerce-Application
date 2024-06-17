@@ -1,12 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { message } from 'antd';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchProductData,
   fetchRandProducts,
-  setSelectedFilters,
 } from '../../redux/slice/productSlice';
 import store, { RootState } from '../../redux/store';
 
@@ -15,12 +14,9 @@ import ImgCarousel from './components/imgCarousel';
 import HeaderRight from './components/headerRight';
 import MainLeft from './components/mainLeft';
 import MainRight from './components/mainRight';
-import RandomCards from './components/randomCarts';
-
-import IProduct from '../../types/IProduct';
 
 import styles from './product.module.css';
-import { IFilters } from '../../types/storeType';
+import BreadCrumbs from './components/breadCrumbs';
 
 const RANDOM_PRODUCT_REQUEST = 5;
 
@@ -79,72 +75,6 @@ function Product() {
     (state: RootState) => state.product.errorProduct,
   );
 
-  const createPath = (productDataStatePath: IProduct) => {
-    const { gameTheme, gameGenre, gameTitle } = productDataStatePath;
-    return (
-      <div className={styles.pathCont}>
-        <p className={styles.pathAllGames}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [],
-                  themes: [],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            All Games &gt;
-          </Link>
-        </p>
-        <p className={styles.pathGenre}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [gameGenre[0]],
-                  themes: [],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            {`${gameGenre[0]} >`}
-          </Link>
-        </p>
-        <p className={styles.pathTheme}>
-          <Link
-            className={styles.pathLink}
-            to="/catalog"
-            onClick={() => {
-              dispatch(
-                setSelectedFilters({
-                  genres: [gameGenre[0]],
-                  themes: [gameTheme[0]],
-                  tags: [],
-                  minPrice: 0,
-                  maxPrice: 60,
-                } as IFilters),
-              );
-            }}
-          >
-            {`${gameTheme[0]} >`}
-          </Link>
-        </p>
-        <p className={styles.pathGameTitle}>{gameTitle}</p>
-      </div>
-    );
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -180,28 +110,37 @@ function Product() {
   const suffix = url.pop();
   const gameId = url.pop();
   const baseURL = url.join('/');
-  const bgSuffix = `page_bg_generated_v6b.jpg?=${suffix}`;
+  const bgSuffix = `library_hero.jpg?=${suffix}`;
   const bgImage = `${baseURL}/${gameId}/${bgSuffix}`;
+
+  /* This is for best tuning mask */
+  // linear-gradient(180deg, var(--color-gradient-second) 58%, var(--gpStoreDarkGrey) 95%),
+  // radial-gradient(15.77% 44.22% at 50% 104.95%, var(--color-gradient-second) 0%, var(--color-gradient-second) 100%),
+  // radial-gradient(30.95% 86.8% at 48.69% 13.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+  // radial-gradient(30.95% 86.8% at 48.69% 13.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+  // radial-gradient(51.31% 143.89% at 49.99% 24.75%, #00000000 0%, #00000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%),
+  // radial-gradient(51.31% 143.89% at 49.99% 24.75%, #00000000 0%, #00000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%),
+  // linear-gradient(180deg, #00000042 90%, rgb(219 26 26) 100%),
 
   return (
     <div
       className={styles.productBackground}
       style={{
         backgroundImage: `
-        linear-gradient(90deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 10%,
-        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
-        linear-gradient(180deg, var(--gpStoreDarkGrey) 0%, var(--color-gradient-second) 20%,
-        var(--color-gradient-second) 90%, var(--gpStoreDarkGrey) 100%),
-         url(${bgImage})`,
+          linear-gradient(180deg, var(--color-gradient-second) 58%, var(--gpStoreDarkGrey) 95%),
+          radial-gradient(15.77% 44.22% at 50% 104.95%, var(--color-gradient-second) 0%, var(--color-gradient-second) 100%),
+          radial-gradient(53.95% 91.8% at 49.69% 89.2%, rgba(66, 66, 66, 0.33) 0%, var(--gpStoreDarkGrey) 100%),
+          url(${bgImage})`,
       }}
     >
       <div className={styles.productCont}>
         <div className={styles.productTitleCont}>
           <div className={styles.productPath}>
             {productDataState.gameTitle &&
-              productDataState.gameGenre &&
               productDataState.gameTheme &&
-              createPath(productDataState)}
+              productDataState.gameGenre && (
+                <BreadCrumbs productDataStatePath={productDataState} />
+              )}
           </div>
           <h1 className={styles.productTitle}>{productDataState.gameTitle}</h1>
         </div>
@@ -222,7 +161,12 @@ function Product() {
             productDataState.descriptionLong &&
             (productDataState.sysRequirementsMinimum ||
               productDataState.sysRequirementsMinimumFill) && (
-              <MainLeft productData={productDataState} />
+              <MainLeft
+                productData={productDataState}
+                productRandom={productsRandomState}
+                randPordNum={randomProductsNum}
+                currentProdTitle={productDataState.gameTitle}
+              />
             )}
           {productDataState.category &&
             productDataState.gameTitle &&
@@ -231,14 +175,6 @@ function Product() {
             productDataState.devCompany && (
               <MainRight productData={productDataState} />
             )}
-        </div>
-        <div className={styles.randProductsCont}>
-          {productsRandomState?.length ? (
-            <RandomCards
-              products={productsRandomState}
-              randomCards={randomProductsNum}
-            />
-          ) : null}
         </div>
       </div>
     </div>

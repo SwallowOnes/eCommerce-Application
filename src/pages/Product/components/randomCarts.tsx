@@ -4,8 +4,12 @@ import IProduct from '../../../types/IProduct';
 
 import styles from '../product.module.css';
 
-function RandomCards(props: { products: IProduct[]; randomCards: number }) {
-  const { products, randomCards } = props;
+function RandomCards(props: {
+  products: IProduct[];
+  randomCards: number;
+  currentProd: string;
+}) {
+  const { products, randomCards, currentProd } = props;
   const getDescription = (
     priceDesc: number,
     discountPriceDesc: number | null,
@@ -31,19 +35,28 @@ function RandomCards(props: { products: IProduct[]; randomCards: number }) {
     );
   };
 
-  return products.slice(0, randomCards).map((product: IProduct) => {
-    const { gameTitle, screenshotList, price, discountPrice } = product;
-    const randomIndex = Math.floor(Math.random() * screenshotList.length);
+  const filtredProducts = products
+    .filter((item) => item.gameTitle !== currentProd)
+    .slice(0, randomCards);
+
+  return filtredProducts.map((product: IProduct) => {
+    const { gameTitle, price, discountPrice, headerImg } = product;
     return (
-      <Link to={`/product/${gameTitle}`} key={gameTitle}>
+      <Link
+        to={`/product/${gameTitle}`}
+        key={gameTitle}
+        className={styles.flexGrow1}
+        style={{ minWidth: `calc(100%/ ${randomCards}`, height: '100%' }}
+      >
         <Card
+          style={{ height: '100%' }}
+          styles={{ body: { padding: '10px 5px' }, cover: {} }}
           hoverable
-          style={{ width: 200 }}
           cover={
             <Image
               alt="example"
-              src={screenshotList[randomIndex]}
-              height={200}
+              height={90}
+              src={headerImg}
               style={{ objectFit: 'cover' }}
               preview={false}
             />

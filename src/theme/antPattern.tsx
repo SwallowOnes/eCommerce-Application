@@ -16,6 +16,7 @@ const antPattern = {
       colorLink: '#000',
       colorLinkActive: '#91caff',
       colorLinkHover: '#003eb3',
+      colorBgMask: '#000000ba',
     },
     components: {
       Layout: {
@@ -28,6 +29,8 @@ const antPattern = {
       },
       Button: {
         borderColorDisabled: '#52c41a',
+        borderRadius: '3px',
+        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)',
       },
     },
   },
@@ -38,6 +41,7 @@ const antPattern = {
       colorLink: '#fff',
       colorLinkActive: '#0958d9',
       colorLinkHover: '#4096ff',
+      colorBgMask: '#000000ba',
     },
     components: {
       Layout: {
@@ -47,6 +51,10 @@ const antPattern = {
       Timeline: {
         tailColor: 'black',
         dotBg: 'transparent',
+      },
+      Button: {
+        borderRadius: '3px',
+        primaryShadow: '	0 2px 0 rgba(5, 145, 255, 0.1)',
       },
     },
   },
