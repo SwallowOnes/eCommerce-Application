@@ -15,31 +15,31 @@ function PopoverCards(props: { products: IProduct[] }) {
     const headerSuffix = 'header.jpg';
     const header = `${baseURL}/${gameID}/${headerSuffix}`;
     return (
-        <Link
-          to={`/product/${gameTitle}`}
-          key={gameTitle}
-          className={styles.popoverCardContainer}
-        >
-          <Image
-            alt="example"
-            src={header}
-            height={60}
-            width={140}
-            style={{ objectFit: 'fill' }}
-            preview={false}
-          />
-          <div className={styles.discountPricePop}>
-            <p className={styles.titleCardPop}>{gameTitle}</p>
-            <div className={styles.popoverCardDesc}>
-              <Tag style={{ padding: '5px 15px' }}>
-                <GetDiscount
-                  priceDesc={price}
-                  discountPriceDesc={discountPrice}
-                />
-              </Tag>
-            </div>
+      <Link
+        to={`/product/${gameTitle}`}
+        key={gameTitle}
+        className={styles.popoverCardContainer}
+      >
+        <Image
+          alt="example"
+          src={header}
+          height={60}
+          width={140}
+          style={{ objectFit: 'fill' }}
+          preview={false}
+        />
+        <div className={styles.discountPricePop}>
+          <p className={styles.titleCardPop}>{gameTitle}</p>
+          <div className={styles.popoverCardDesc}>
+            <Tag style={{ padding: '5px 15px' }}>
+              <GetDiscount
+                priceDesc={price}
+                discountPriceDesc={discountPrice}
+              />
+            </Tag>
           </div>
-        </Link>
+        </div>
+      </Link>
     );
   });
 }

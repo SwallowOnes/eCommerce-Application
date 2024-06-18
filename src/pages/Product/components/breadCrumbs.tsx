@@ -25,7 +25,7 @@ function BreadCrumbs({ productDataStatePath }: IProps) {
       filters: {
         genresFilter: [],
         themesFilter: [],
-      }
+      },
     },
     {
       key: 'genre',
