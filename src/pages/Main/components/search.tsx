@@ -10,9 +10,8 @@ import store, { RootState } from '../../../redux/store';
 import styles from './search.module.css';
 import PopoverCards from '../../catalog/components/popoverCard';
 
-
 const { Search } = Input;
-const TIME_OUT = 1500;
+const TIME_OUT = 2000;
 
 function SearchMenu() {
   const navigate = useNavigate();
@@ -88,7 +87,7 @@ function SearchMenu() {
             onBlur={blurHandler}
             value={searchText}
           />
-          {isFocus && searchText !== '' && (
+          {isFocus && searchText && (
             <div className={styles.popoverContainer}>
               <PopoverCards products={searchedProducts} />
             </div>
