@@ -35,7 +35,7 @@ interface INewAddress {
   city: '';
   street: '';
   postalCode: '';
-  isDefault: false;
+  isDefault?: boolean;
 }
 
 type IUpdateShipAddress = {
@@ -54,7 +54,7 @@ type IUpdateBillAddress = {
     city: string;
     country: string;
     id?: string;
-    isDefault: boolean;
+    isDefault?: boolean;
     postalcode?: string;
     street: string;
   }>;

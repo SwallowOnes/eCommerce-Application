@@ -1,0 +1,17 @@
+.userPersCont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.addButton {
+  width: 208px;
+  height: 230px;
+  /* background-color: var(--color-menu-item-selected); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  /* color: var(--color-footer-text); */
+  cursor: pointer;
+}

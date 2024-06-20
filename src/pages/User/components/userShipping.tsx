@@ -6,14 +6,14 @@ import { AxiosError } from 'axios';
 import { useSelector } from 'react-redux';
 import styles from '../user.module.css';
 import UserService from '../../../models/Users/UserService';
-import store, { RootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import {
   IAddress,
   INewAddress,
   IUpdateShipAddress,
 } from '../../../types/UserResponse';
 import AddressFormPart from './AddressFormPart';
-import { getFullUserDataAsync } from '../../../redux/slice/userSlice';
+import AddressCard from './subComponents/addressCard';
 
 interface FormDataType {
   newItems: IAddress[];
@@ -87,6 +87,7 @@ function UserShipping() {
       const aggregateData: ReturnDataType = aggregatePayload(formData);
       setIsLoading(true);
       await UserService.updateShippingAddress(aggregateData.payload);
+      console.log(aggregateData.payload)
       const allAddresses = await UserService.createShippingAddress(
         aggregateData.new,
       );
@@ -100,6 +101,7 @@ function UserShipping() {
       setIsAddingNewAddress(false);
     }
   };
+
   const handleUpdateData = async () => {
     try {
       await form.validateFields();
@@ -124,19 +126,6 @@ function UserShipping() {
     getNewAddress();
   }, [userFullData]);
 
-  const deleteAddress = (address: IAddress) => async () => {
-    try {
-      await UserService.deleteAddress(address._id);
-      const getUserData = async () => {
-        await store.dispatch(getFullUserDataAsync());
-      };
-      getUserData();
-      message.success('Address was deleted!');
-    } catch {
-      message.error('Ooops.Something do wrong!');
-    }
-  };
-
   return (
     <Spin spinning={isLoading}>
       {isEditMode ? (
@@ -155,20 +144,8 @@ function UserShipping() {
         initialValues={mapInitialValues(shippingAddress)}
         className={styles.userPersCont}
       >
-        {shippingAddress.map((address, index) => (
-          <Card
-            size="default"
-            title={`Address ${index + 1}`}
-            key={address._id}
-            extra={<CloseOutlined onClick={deleteAddress(address)} />}
-          >
-            <AddressFormPart
-              key={address._id}
-              prefix={address._id}
-              type="old"
-              isDisabled={!isEditMode}
-            />
-          </Card>
+        {shippingAddress.map((address) => (
+          <AddressCard key={address._id} address={address} />
         ))}
         {isEditMode ? (
           <Button

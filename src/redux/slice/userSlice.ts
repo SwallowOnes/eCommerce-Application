@@ -37,6 +37,12 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    // setUpdateuserAddress: (
+    //   state,
+    //   action: PayloadAction<UpdateUserAddress['payload']>,
+    // ) => {
+    //   state.updateUserAddres = action.payload
+    // },
     setIsFirstLoadUser: (
       state,
       action: PayloadAction<IsFirstLoadUser['payload']>,
