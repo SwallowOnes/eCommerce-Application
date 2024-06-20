@@ -87,7 +87,6 @@ function UserShipping() {
       const aggregateData: ReturnDataType = aggregatePayload(formData);
       setIsLoading(true);
       await UserService.updateShippingAddress(aggregateData.payload);
-      console.log(aggregateData.payload)
       const allAddresses = await UserService.createShippingAddress(
         aggregateData.new,
       );

@@ -12,7 +12,7 @@ import UserService from '../../../../models/Users/UserService';
 import store from '../../../../redux/store';
 import { getFullUserDataAsync } from '../../../../redux/slice/userSlice';
 
-import styles from './addressCard.module.css'
+import styles from './addressCard.module.css';
 
 const deleteAddress = (address: IAddress) => async () => {
   try {
@@ -29,9 +29,9 @@ const deleteAddress = (address: IAddress) => async () => {
 
 function AddressCard({
   address,
-  // onEdit,
-  // handleDeleteAddress: handleDeleteAddres,
-}: {
+} // onEdit,
+// handleDeleteAddress: handleDeleteAddres,
+: {
   address: IAddress;
   // handleDeleteAddress: () => void;
   // onEdit: (addr: IAddress) => void;
@@ -40,13 +40,10 @@ function AddressCard({
     <Card
       className={styles.addressCard}
       actions={[
-        <DeleteOutlined
-          key="setting"
-          onClick={deleteAddress(address)}
-        />,
+        <DeleteOutlined key="setting" onClick={deleteAddress(address)} />,
         <EditOutlined
           key="edit"
-        //  onClick={() => onEdit(address)}
+          //  onClick={() => onEdit(address)}
         />,
       ]}
     >

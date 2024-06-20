@@ -33,18 +33,15 @@ function UserBilling() {
       );
       const billingData = billingResponse.data;
       setIsLoading(false);
-      setBillingAddress(billingData)
+      setBillingAddress(billingData);
     }
     getUserData();
   }, [setBillingAddress, userFullData.billingAddress]);
 
-
   return (
     <>
       <Spin spinning={isLoading}>
-          <h3>
-            BILLING ADDRESSES
-          </h3>
+        <h3>BILLING ADDRESSES</h3>
         <div className={styles.userPersCont}>
           <Button
             type="dashed"
@@ -79,4 +76,3 @@ function UserBilling() {
 }
 
 export default UserBilling;
-
