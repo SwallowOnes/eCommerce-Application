@@ -9,12 +9,13 @@ import { RootState } from '../../../redux/store';
 import { IAddress } from '../../../types/UserResponse';
 
 import AddressCard from './subComponents/addressCard';
-import AddAddressForm from './addAddress';
+import AddAddress from './addAddress';
 
 function UserBilling() {
   const userFullData = useSelector((state: RootState) => state.user.userFull);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalAddAddressOpen, setIsModalAddAddressOpen] = useState(false);
+  const [isModalEditAddressOpen, setIsModalEditAddressOpen] = useState(false);
   const [billingAddress, setBillingAddress] = useState([
     {
       _id: '',
@@ -55,22 +56,45 @@ function UserBilling() {
           {billingAddress.map((address: IAddress) =>
             address.isDefault ? (
               <Badge.Ribbon text="Default address" key={address._id}>
-                <AddressCard key={address._id} address={address} />
+                <AddressCard
+                  key={address._id}
+                  address={address}
+                  // onEdit={setIsModalEditAddressOpen}
+                />
               </Badge.Ribbon>
             ) : (
-              <AddressCard key={address._id} address={address} />
+              <AddressCard
+                key={address._id}
+                address={address}
+                // onEdit={setIsModalEditAddressOpen}
+              />
             ),
           )}
         </div>
       </Spin>
-      <Modal
-        title="Edit Address"
-        open={isModalAddAddressOpen}
-        onCancel={() => setIsModalAddAddressOpen(false)}
-        footer=""
-      >
-        <AddAddressForm data={billingAddress} />
-      </Modal>
+      {isModalAddAddressOpen && (
+        <Modal
+          title="Add Address"
+          open={isModalAddAddressOpen}
+          onCancel={() => setIsModalAddAddressOpen(false)}
+          footer=""
+        >
+          <AddAddress data={billingAddress} />
+        </Modal>
+      )}
+      {isModalEditAddressOpen && (
+        <Modal
+          title="Edit Address"
+          open={isModalEditAddressOpen}
+          onCancel={() => setIsModalEditAddressOpen(false)}
+          footer=""
+        >
+          <AddAddress
+            data={billingAddress}
+            // onEdit={setIsModalEditAddressOpen}
+          />
+        </Modal>
+      )}
     </>
   );
 }

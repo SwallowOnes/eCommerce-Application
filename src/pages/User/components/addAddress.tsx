@@ -19,7 +19,7 @@ interface ICreatePayload {
   payload: { billingAddresses: IAddress[] };
 }
 
-function AddAddressForm({ data }: { data: IAddress[] }) {
+function AddAddress({ data }: { data: IAddress[] }) {
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [defaultBilling, setDefaultBilling] = useState(false);
@@ -75,4 +75,4 @@ function AddAddressForm({ data }: { data: IAddress[] }) {
   );
 }
 
-export default AddAddressForm;
+export default AddAddress;

@@ -1,37 +1,20 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { Button, Card, Form, Spin, message } from 'antd';
-import { CloseOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
+import { Badge, Button, Modal, Spin } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 import { useSelector } from 'react-redux';
-import styles from '../user.module.css';
+import styles from './userAddresses.module.css';
 import UserService from '../../../models/Users/UserService';
 import { RootState } from '../../../redux/store';
-import {
-  IAddress,
-  INewAddress,
-  IUpdateShipAddress,
-} from '../../../types/UserResponse';
-import AddressFormPart from './AddressFormPart';
+import { IAddress } from '../../../types/UserResponse';
+
 import AddressCard from './subComponents/addressCard';
+import AddAddress from './addAddress';
 
-interface FormDataType {
-  newItems: IAddress[];
-}
-interface ReturnDataType {
-  payload: IUpdateShipAddress;
-  new: INewAddress;
-}
-
-interface InitValue {
-  [key: string]: IAddress;
-}
-
-function UserShipping() {
+function Usershipping() {
   const userFullData = useSelector((state: RootState) => state.user.userFull);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAddingNewAddress, setIsAddingNewAddress] = useState(false);
+  const [isModalAddAddressOpen, setIsModalAddAddressOpen] = useState(false);
   const [shippingAddress, setShippingAddress] = useState([
     {
       _id: '',
@@ -42,7 +25,6 @@ function UserShipping() {
       isDefault: false,
     },
   ] as IAddress[]);
-  const [form] = Form.useForm();
 
   useEffect(() => {
     async function getUserData() {
@@ -54,181 +36,43 @@ function UserShipping() {
       setShippingAddress(shippingData);
     }
     getUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function mapInitialValues(addresss: IAddress[] = []): InitValue {
-    return addresss.reduce(
-      (acc, current) => ({
-        ...acc,
-        [current._id as string]: current,
-      }),
-      {} as InitValue,
-    );
-  }
-
-  function aggregatePayload(formData: FormDataType) {
-    const { newItems = [], ...rest } = formData;
-    const returnData = {
-      payload: { shippingAddresses: Object.values(rest) as IAddress[] },
-      new: newItems[0],
-    };
-    return returnData;
-  }
-
-  useLayoutEffect(() => {
-    form.resetFields();
-  }, [form, shippingAddress]);
-
-  const onSubmitNewAddress = async () => {
-    try {
-      await form.validateFields();
-      const formData = form.getFieldsValue();
-      const aggregateData: ReturnDataType = aggregatePayload(formData);
-      setIsLoading(true);
-      await UserService.updateShippingAddress(aggregateData.payload);
-      const allAddresses = await UserService.createShippingAddress(
-        aggregateData.new,
-      );
-      setShippingAddress(allAddresses.data);
-    } catch (error) {
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        message.error(error.response.data.message);
-      }
-    } finally {
-      setIsLoading(false);
-      setIsAddingNewAddress(false);
-    }
-  };
-
-  const handleUpdateData = async () => {
-    try {
-      await form.validateFields();
-      const formData = form.getFieldsValue();
-      setIsEditMode(false);
-      const aggregateData: ReturnDataType = aggregatePayload(formData);
-      await UserService.updateShippingAddress(aggregateData.payload);
-      message.success('Changes saved successful!');
-    } catch {
-      message.error('Ooops.Something do wrong!');
-    }
-  };
-
-  useEffect(() => {
-    async function getNewAddress() {
-      const shippingResponse = await UserService.getShippingAddress(
-        userFullData.shippingAddress,
-      );
-      const shippingData = shippingResponse.data;
-      setShippingAddress(shippingData);
-    }
-    getNewAddress();
-  }, [userFullData]);
+  }, [setShippingAddress, userFullData.shippingAddress]);
 
   return (
-    <Spin spinning={isLoading}>
-      {isEditMode ? (
-        <h3>
-          SHIPPING ADDRESSES <EditOutlined />{' '}
-        </h3>
-      ) : (
+    <>
+      <Spin spinning={isLoading}>
         <h3>SHIPPING ADDRESSES</h3>
-      )}
-      <Form
-        form={form}
-        name="addresses_form"
-        style={{
-          maxWidth: 600,
-        }}
-        initialValues={mapInitialValues(shippingAddress)}
-        className={styles.userPersCont}
-      >
-        {shippingAddress.map((address) => (
-          <AddressCard key={address._id} address={address} />
-        ))}
-        {isEditMode ? (
+        <div className={styles.userPersCont}>
           <Button
-            onClick={handleUpdateData}
-            className={styles.submitBtn}
-            style={{ width: 200 }}
-          >
-            Save changes
-          </Button>
-        ) : (
-          <Button
-            onClick={() => setIsEditMode(true)}
-            className={styles.submitBtn}
-            type="primary"
-            style={{ width: 200 }}
-          >
-            <EditOutlined /> Edit
-          </Button>
-        )}
-        <Form.List name="newItems" initialValue={[]}>
-          {(fields, { add, remove }) => (
-            <>
-              {fields.map((field) => (
-                <Card
-                  size="default"
-                  title={`New address ${field.key + 1}`}
-                  style={{ background: 'grey' }}
-                  key={field.key}
-                  extra={
-                    <CloseOutlined
-                      onClick={() => {
-                        remove(field.key);
-                        setIsAddingNewAddress(false);
-                      }}
-                    />
-                  }
-                >
-                  <AddressFormPart
-                    key={field.key}
-                    prefix={`${field.key}`}
-                    type="new"
-                    isDisabled
-                  />
-                </Card>
-              ))}
-              {isAddingNewAddress ? (
-                ''
-              ) : (
-                <Button
-                  type="dashed"
-                  onClick={() => {
-                    add();
-                    setIsAddingNewAddress(true);
-                  }}
-                  style={{
-                    width: '60%',
-                    margin: '15px',
-                    height: '40px',
-                  }}
-                  icon={<PlusOutlined />}
-                >
-                  Add address
-                </Button>
-              )}
-            </>
-          )}
-        </Form.List>
-        {isAddingNewAddress ? (
-          <Button
-            type="primary"
-            onClick={onSubmitNewAddress}
-            style={{
-              margin: '10px',
-              height: '40px',
+            type="dashed"
+            onClick={() => {
+              setIsModalAddAddressOpen(true);
             }}
+            className={styles.addButton}
           >
-            Submit
+            <PlusOutlined /> ADD NEW ADDRESS
           </Button>
-        ) : (
-          ''
-        )}
-      </Form>
-    </Spin>
+          {shippingAddress.map((address: IAddress) =>
+            address.isDefault ? (
+              <Badge.Ribbon text="Default address" key={address._id}>
+                <AddressCard key={address._id} address={address} />
+              </Badge.Ribbon>
+            ) : (
+              <AddressCard key={address._id} address={address} />
+            ),
+          )}
+        </div>
+      </Spin>
+      <Modal
+        title="Edit Address"
+        open={isModalAddAddressOpen}
+        onCancel={() => setIsModalAddAddressOpen(false)}
+        footer=""
+      >
+        <AddAddress data={shippingAddress} />
+      </Modal>
+    </>
   );
 }
 
-export default UserShipping;
+export default Usershipping;

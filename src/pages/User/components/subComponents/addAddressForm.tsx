@@ -14,7 +14,7 @@ const countries = [
 
 const { Option } = Select;
 
-function addNewAddressForm({
+function addAddressForm({
   setData,
 }: {
   setData: React.Dispatch<React.SetStateAction<boolean>>;
@@ -119,4 +119,4 @@ function addNewAddressForm({
   );
 }
 
-export default addNewAddressForm;
+export default addAddressForm;

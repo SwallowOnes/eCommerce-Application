@@ -29,12 +29,12 @@ const deleteAddress = (address: IAddress) => async () => {
 
 function AddressCard({
   address,
-} // onEdit,
-// handleDeleteAddress: handleDeleteAddres,
+  //  onEdit,
+} // handleDeleteAddress: handleDeleteAddres,
 : {
   address: IAddress;
   // handleDeleteAddress: () => void;
-  // onEdit: (addr: IAddress) => void;
+  // onEdit:  React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <Card
@@ -43,7 +43,7 @@ function AddressCard({
         <DeleteOutlined key="setting" onClick={deleteAddress(address)} />,
         <EditOutlined
           key="edit"
-          //  onClick={() => onEdit(address)}
+          // onClick={() => onEdit(true)}
         />,
       ]}
     >
